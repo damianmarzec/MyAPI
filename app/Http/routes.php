@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('login', 'UserController@login')->name('login');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('user', 'UserController', ['except' => [
+        'create', 'edit', 'destroy'  // We don't need those
+    ]]);
+});

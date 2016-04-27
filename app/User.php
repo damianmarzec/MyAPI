@@ -12,7 +12,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        // 'name', 'email', 'password',
+        'name', 'password', 'alive', 'latitude', 'longitude'
     ];
 
     /**
@@ -21,6 +22,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'token'
     ];
+
+
+    /**
+     * Returns all given items by curent user
+     * @return \App\Item
+     */
+    public function itemsGiven()
+    {
+        return $this->hasMany(\App\Item::class, 'giver_id');
+    }
+
+    /**
+     * Returns all taken items by curent user
+     * @return \App\Item
+     */
+    public function itemsTaken()
+    {
+        return $this->hasMany(\App\Item::class, 'taker_id');
+    }
 }
