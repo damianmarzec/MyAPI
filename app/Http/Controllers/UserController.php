@@ -74,9 +74,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return JSON
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $user = new \App\User();
+        $user->name = 'Damian';
+        $user->password =  \Hash::make('damian123');
+        $user->token = "testToken";
+        $user->alive = 1;
+        dd($user->save());
     }
 
     /**

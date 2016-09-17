@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::post('login', 'UserController@login')->name('login');
+Route::get('adddamian', 'UserController@show')->name('show');  //   presentation only ~!
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('user', 'UserController', ['except' => [
